@@ -129,63 +129,58 @@ main {
    PRODUCT CARD
 ========================================= */
 
+/* =========================
+   PRODUCT CARD
+========================= */
+
 .card {
-  background: white;
-
-  border-radius: 10px;
-
+  background: #0a0a0a;
+  border-radius: 15px;
   overflow: hidden;
-
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.08);
-
   cursor: pointer;
 
-  transition: transform 0.15s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.4);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
+
+  border-color: rgba(255, 255, 255, 0.7);
+
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.15);
 }
 
 
-/* Product image */
+/* =========================
+   PRODUCT IMAGE
+========================= */
 
 .card img {
+  display: block;
+
   width: 100%;
-  height: 200px;
+  height: 250px;
 
   object-fit: cover;
+  object-position: center;
 
-  background: #eee;
+  background: #0a0a0a;
+
+  transition: transform 0.4s ease;
 }
 
-
-/* Card body */
-
-.card-body {
-  padding: 12px;
-}
-
-.card-name {
-  font-weight: 600;
-  margin: 0 0 4px;
-}
-
-.card-brand {
-  color: #888;
-
-  font-size: 13px;
-
-  margin: 0 0 6px;
-}
-
-.card-price {
-  color: #e94560;
-
-  font-weight: 700;
-
-  font-size: 16px;
+.card:hover img {
+  transform: scale(1.05);
 }
 
 
