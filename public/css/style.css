@@ -1,0 +1,738 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f7f7fa;
+  color: #222;
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 24px;
+
+  background: #1a1a2e;
+  color: white;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 10;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.admin-btn,
+.btn {
+  background: #e94560;
+  color: white;
+
+  padding: 8px 16px;
+
+  border-radius: 6px;
+
+  text-decoration: none;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+.admin-btn:hover,
+.btn:hover {
+  background: #c73650;
+}
+
+.btn-secondary {
+  background: #888;
+}
+
+.btn-secondary:hover {
+  background: #666;
+}
+
+.btn-danger {
+  background: #d9354a;
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page-title {
+  margin-bottom: 16px;
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading {
+  text-align: center;
+  color: #888;
+  padding: 40px 0;
+}
+
+
+/* =========================================
+   PRODUCT GRID
+========================================= */
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(220px, 1fr));
+
+  gap: 20px;
+}
+
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+.card {
+  background: white;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08);
+
+  cursor: pointer;
+
+  transition: transform 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+
+/* Product image */
+
+.card img {
+  width: 100%;
+  height: 200px;
+
+  object-fit: cover;
+
+  background: #eee;
+}
+
+
+/* Card body */
+
+.card-body {
+  padding: 12px;
+}
+
+.card-name {
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.card-brand {
+  color: #888;
+
+  font-size: 13px;
+
+  margin: 0 0 6px;
+}
+
+.card-price {
+  color: #e94560;
+
+  font-weight: 700;
+
+  font-size: 16px;
+}
+
+
+/* =========================================
+   MODAL OVERLAY
+========================================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 100;
+
+  padding: 16px;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+  background: white;
+
+  border-radius: 12px;
+
+  width: 100%;
+
+  max-width: 900px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  position: relative;
+
+  transition:
+    max-width 0.3s ease;
+}
+
+
+/* =========================================
+   MODAL CLOSE
+========================================= */
+
+.modal-close {
+  position: absolute;
+
+  top: 10px;
+  right: 14px;
+
+  background: none;
+
+  border: none;
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+  color: #666;
+
+  z-index: 10;
+}
+
+.modal-close:hover {
+  color: #222;
+}
+
+
+/* =========================================
+   MODAL BODY
+========================================= */
+
+.modal-body {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 24px;
+
+  padding: 24px;
+}
+
+
+/* =========================================
+   GALLERY
+========================================= */
+
+.modal-gallery {
+  flex: 1;
+
+  min-width: 280px;
+
+  transition: flex 0.3s ease;
+}
+
+
+/* =========================================
+   MAIN IMAGE
+========================================= */
+
+#modal-main-image {
+  display: block;
+
+  width: 100%;
+
+  height: 400px;
+
+  object-fit: contain;
+
+  background: #f5f5f5;
+
+  border-radius: 10px;
+
+  cursor: zoom-in;
+
+  transition:
+    height 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* =========================================
+   IMAGE WHEN CLICKED
+========================================= */
+
+#modal-main-image.image-large {
+  height: 600px;
+
+  cursor: zoom-out;
+}
+
+
+/* =========================================
+   MODAL WHEN IMAGE IS LARGE
+========================================= */
+
+.modal.image-zoomed {
+  max-width: 1250px;
+}
+
+.modal.image-zoomed .modal-gallery {
+  flex: 1.5;
+}
+
+
+/* =========================================
+   THUMBNAILS
+========================================= */
+
+.thumbs {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 10px;
+
+  flex-wrap: wrap;
+}
+
+.thumbs img {
+  width: 64px;
+
+  height: 64px;
+
+  object-fit: cover;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  border: 2px solid transparent;
+
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.thumbs img:hover {
+  transform: scale(1.05);
+}
+
+.thumbs img.active {
+  border-color: #e94560;
+}
+
+
+/* =========================================
+   MODAL INFO
+========================================= */
+
+.modal-info {
+  flex: 1;
+
+  min-width: 260px;
+}
+
+.brand-tag {
+  color: #888;
+}
+
+.price {
+  font-size: 22px;
+
+  color: #e94560;
+
+  font-weight: 700;
+}
+
+.stock {
+  color: #555;
+}
+
+.desc {
+  line-height: 1.6;
+
+  white-space: pre-wrap;
+}
+
+
+/* =========================================
+   ADMIN LOGIN
+========================================= */
+
+.admin-wrap {
+  max-width: 480px;
+
+  margin: 60px auto;
+
+  padding: 32px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.admin-wrap h1 {
+  margin-top: 0;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 14px;
+
+  color: #444;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+
+  padding: 10px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 6px;
+
+  font-size: 14px;
+}
+
+.field textarea {
+  min-height: 80px;
+
+  resize: vertical;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error-msg {
+  color: #e94560;
+
+  font-size: 14px;
+
+  margin-bottom: 10px;
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+.dash-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  max-width: 1100px;
+
+  margin: 0 auto 20px;
+
+  padding: 0 24px;
+}
+
+.dash-wrap {
+  max-width: 1100px;
+
+  margin: 24px auto;
+
+  padding: 0 24px;
+}
+
+.dash-section {
+  background: white;
+
+  border-radius: 10px;
+
+  padding: 20px;
+
+  margin-bottom: 24px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+
+  padding: 10px;
+
+  border-bottom: 1px solid #eee;
+
+  font-size: 14px;
+}
+
+th {
+  color: #666;
+}
+
+
+/* =========================================
+   SMALL IMAGE
+========================================= */
+
+img.thumb-small {
+  width: 50px;
+
+  height: 50px;
+
+  object-fit: cover;
+
+  border-radius: 6px;
+}
+
+
+/* =========================================
+   ROW ACTIONS
+========================================= */
+
+.row-actions button {
+  margin-right: 6px;
+}
+
+
+/* =========================================
+   IMAGE PREVIEW
+========================================= */
+
+.preview-imgs {
+  display: flex;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+
+  margin-top: 10px;
+}
+
+.preview-imgs img {
+  width: 70px;
+
+  height: 70px;
+
+  object-fit: cover;
+
+  border-radius: 6px;
+}
+
+
+/* =========================================
+   HIDDEN
+========================================= */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .topbar {
+    padding: 12px 16px;
+  }
+
+  .brand {
+    font-size: 18px;
+  }
+
+  main {
+    padding: 16px;
+  }
+
+  .grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+  }
+
+  .card img {
+    height: 160px;
+  }
+
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .modal {
+    max-height: 95vh;
+  }
+
+  .modal-body {
+    flex-direction: column;
+
+    padding: 18px;
+
+    gap: 18px;
+  }
+
+  .modal-gallery {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+  #modal-main-image {
+    height: 320px;
+  }
+
+  #modal-main-image.image-large {
+    height: 450px;
+  }
+
+  .modal.image-zoomed {
+    max-width: 100%;
+  }
+
+  .modal.image-zoomed .modal-gallery {
+    flex: 1;
+  }
+
+  .modal-info {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card img {
+    height: 220px;
+  }
+
+  #modal-main-image {
+    height: 280px;
+  }
+
+  #modal-main-image.image-large {
+    height: 380px;
+  }
+
+  .thumbs img {
+    width: 58px;
+
+    height: 58px;
+  }
+
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.brand img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 6px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FM Shop</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" type="image/png" href="/fmshop.png">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">👟 FM Shop</div>
+    <a href="/admin/login.html" class="admin-btn">เข้าสู่ระบบแอดมิน</a>
+  </header>
+
+  <main>
+    <h1 class="page-title">รองเท้าทั้งหมด</h1>
+    <div id="loading" class="loading">กำลังโหลดสินค้า...</div>
+    <div id="product-grid" class="grid"></div>
+  </main>
+
+  <!-- Modal รายละเอียดสินค้า -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <div class="modal-body">
+        <div class="modal-gallery">
+          <img id="modal-main-image" src="" alt="">
+          <div id="modal-thumbs" class="thumbs"></div>
+        </div>
+        <div class="modal-info">
+          <h2 id="modal-name"></h2>
+          <p id="modal-brand" class="brand-tag"></p>
+          <p id="modal-price" class="price"></p>
+          <p id="modal-stock" class="stock"></p>
+          <p id="modal-desc" class="desc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

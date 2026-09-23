@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เข้าสู่ระบบแอดมิน</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-wrap">
+    <h1>เข้าสู่ระบบแอดมิน</h1>
+    <p id="error" class="error-msg" style="display:none;"></p>
+    <form id="login-form">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="username" required autofocus>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="password" required>
+      </div>
+      <button type="submit" class="btn" style="width:100%;">เข้าสู่ระบบ</button>
+    </form>
+    <p style="margin-top:16px;"><a href="/index.html">&larr; กลับหน้าร้าน</a></p>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorEl = document.getElementById('error');
+      errorEl.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          errorEl.textContent = data.error || 'เข้าสู่ระบบไม่สำเร็จ';
+          errorEl.style.display = 'block';
+          return;
+        }
+        localStorage.setItem('admin_token', data.token);
+        localStorage.setItem('admin_username', data.username);
+        window.location.href = '/admin/dashboard.html';
+      } catch (err) {
+        errorEl.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่';
+        errorEl.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

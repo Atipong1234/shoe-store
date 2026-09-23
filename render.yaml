@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: shoe-store
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        sync: false   # ไปกรอกค่าจริงใน Render Dashboard (connection string จาก Neon)
+      - key: JWT_SECRET
+        sync: false   # ตั้งค่าเป็นข้อความสุ่มยาวๆ
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+    disk:
+      name: uploads-disk
+      mountPath: /app/uploads
+      sizeGB: 1

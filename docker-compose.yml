@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+
+  # ฐานข้อมูล Postgres สำหรับทดสอบในเครื่อง
+  db:
+    image: postgres:16-alpine
+    container_name: shoe-store-db
+    restart: unless-stopped
+
+    environment:
+      - POSTGRES_USER=shoeuser
+      - POSTGRES_PASSWORD=shoepass
+      - POSTGRES_DB=shoedb
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shoeuser -d shoedb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  # Node.js Application
+  app:
+    build: .
+    container_name: shoe-store-app
+    restart: unless-stopped
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    ports:
+      - "3001:3000"
+
+    environment:
+      - PORT=3000
+      - NODE_OPTIONS=--dns-result-order=ipv4first
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-me}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
+
+    volumes:
+      - ./uploads:/app/uploads
+
+
+volumes:
+  pgdata:
