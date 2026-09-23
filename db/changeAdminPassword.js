@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const bcrypt = require('bcryptjs');
 const pool = require('./pool');
 
@@ -8,6 +10,10 @@ async function changeAdminPassword() {
 
     if (!newPassword) {
       throw new Error('ไม่พบ ADMIN_PASSWORD ใน .env');
+    }
+
+    if (!process.env.DATABASE_URL) {
+      throw new Error('ไม่พบ DATABASE_URL ใน .env');
     }
 
     const hash = await bcrypt.hash(newPassword, 10);
